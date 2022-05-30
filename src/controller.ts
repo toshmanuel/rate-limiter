@@ -12,8 +12,8 @@ const jsonParser = bodyParser.json();
 
 module.exports = router;
 
-router.post("/inbound", inbound);
-router.post("/outbound", outbound);
+router.post("/API/inbound/sms", inbound);
+router.post("/API/outbound/sms", outbound);
 
 async function inbound(req: Request, res: Response, next: NextFunction) {
   try {
@@ -68,7 +68,7 @@ async function outbound(req: Request, res: Response, next: NextFunction) {
       let numberOfCalls = await redis.get(fromParameter);
       if (numberOfCalls != null) {
         console.log("Number  of Calls --> ", numberOfCalls);
-        if (numberOfCalls > 5) {
+        if (numberOfCalls > 50) {
           res.status(400);
           res.json({
             messge: "",
