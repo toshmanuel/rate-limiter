@@ -18,7 +18,7 @@ app.use(basicAuth);
 app.use(errorResponse.errorResponse);
 app.use("/api", require("./src/controller"));
 
-const port = process.env.PROFILE == "dev" ? 5000 : process.env.PORT;
+const port = process.env.PROFILE == "dev" ? 5000 : process.env.SERVER_PORT;
 
 app.use("*", (req, res) => {
   res.status(404).json({
